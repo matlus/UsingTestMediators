@@ -1,0 +1,5 @@
+C:\Users\Shiv\Source\Repos\UsingTestMediators\OrderSystem.DomainLayer\obj\Debug\OrderSystem.DomainLayer.csprojResolveAssemblyReference.cache
+C:\Users\Shiv\Source\Repos\UsingTestMediators\OrderSystem.DomainLayer\bin\Debug\OrderSystem.DomainLayer.dll
+C:\Users\Shiv\Source\Repos\UsingTestMediators\OrderSystem.DomainLayer\bin\Debug\OrderSystem.DomainLayer.pdb
+C:\Users\Shiv\Source\Repos\UsingTestMediators\OrderSystem.DomainLayer\obj\Debug\OrderSystem.DomainLayer.dll
+C:\Users\Shiv\Source\Repos\UsingTestMediators\OrderSystem.DomainLayer\obj\Debug\OrderSystem.DomainLayer.pdb
