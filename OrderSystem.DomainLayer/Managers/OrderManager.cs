@@ -24,7 +24,7 @@ namespace OrderSystem.DomainLayer.Managers
         private EmailerBase emailer;
         private EmailerBase Emailer { get { return emailer ?? (emailer = serviceLocator.CreateEmailer()); } }
 
-        public OrderManager(ServiceLocatorBase serviceLocator )
+        public OrderManager(ServiceLocatorBase serviceLocator)
         {
             this.serviceLocator = serviceLocator;
         }

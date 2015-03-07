@@ -5,3 +5,10 @@ C:\Users\Shiv\Source\Repos\UsingTestMediators\Tests\AcceptanceTests\obj\Debug\Ac
 C:\Users\Shiv\Source\Repos\UsingTestMediators\Tests\AcceptanceTests\obj\Debug\AcceptanceTests.pdb
 C:\Users\Shiv\Source\Repos\UsingTestMediators\Tests\AcceptanceTests\bin\Debug\OrderSystem.DomainLayer.dll
 C:\Users\Shiv\Source\Repos\UsingTestMediators\Tests\AcceptanceTests\bin\Debug\OrderSystem.DomainLayer.pdb
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\bin\Debug\AcceptanceTests.dll
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\bin\Debug\AcceptanceTests.pdb
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\bin\Debug\OrderSystem.DomainLayer.dll
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\bin\Debug\OrderSystem.DomainLayer.pdb
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\obj\Debug\AcceptanceTests.dll
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\obj\Debug\AcceptanceTests.pdb

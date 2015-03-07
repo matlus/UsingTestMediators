@@ -15,6 +15,9 @@ namespace OrderSystem.DomainLayer
         private OrderManager orderManager;
         private OrderManager OrderManager { get { return orderManager ?? (orderManager = serviceLocator.CreateOrderManager()); } }
 
+        private InventoryManager inventoryManager;
+        private InventoryManager InventoryManager { get { return inventoryManager ?? (inventoryManager = serviceLocator.CreateInventoryManager()); } }
+
         public DomainFacade()
             :this(new ServiceLocatorProduction())
         {
@@ -28,6 +31,11 @@ namespace OrderSystem.DomainLayer
         public string PlaceOrder(int customerId, string productName, int quantity)
         {
             return OrderManager.PlaceOrder(customerId, productName, quantity);
+        }
+
+        public void AddProductToInventory(int productId, int quantity)
+        {
+            InventoryManager.AddProductToInventory(productId, quantity);
         }
     }
 }

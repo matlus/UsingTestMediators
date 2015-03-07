@@ -72,5 +72,19 @@ namespace AcceptanceTests
                 Assert.IsTrue(e.Message.Contains(expectedMessagePart), "A ProductNotSupportedException was Thrown as expected. However, the exception message was expected to contain: " + expectedMessagePart + ", but the actual exception message was: " + e.Message);
             }
         }
+
+        [TestMethod]        
+        [TestCategory("Acceptance Test")]
+        [ExpectedException(typeof(UnSupportedProductCanNotBeAddedToInventoryException))]
+        public void DomainFacade_AddProductToInventory_WhenProductBeingAddedIsNotSupported_ShouldThrow()
+        {
+            // Arrange
+
+            // Act
+            domainFacadeUnderTest.AddProductToInventory(-1, 10);
+            Assert.Fail("An UnSupportedProductCanNotBeAddedToInventoryException was expected to be throw, but no Exception was thrown");
+
+            // Assert
+        }
     }
 }

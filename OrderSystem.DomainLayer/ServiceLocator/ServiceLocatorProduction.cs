@@ -17,6 +17,11 @@ namespace OrderSystem.DomainLayer.ServiceLocator
             return new OrderManager(this);
         }
 
+        protected override InventoryManager CreateInventoryManagerCore()
+        {
+            return new InventoryManager(this);
+        }
+
         protected override EmailerBase CreateEmailerCore()
         {
             return new Emailer();

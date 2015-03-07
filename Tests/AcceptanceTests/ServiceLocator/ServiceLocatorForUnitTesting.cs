@@ -23,6 +23,11 @@ namespace AcceptanceTests.ServiceLocator
             return new OrderManager(this);
         }
 
+        protected override InventoryManager CreateInventoryManagerCore()
+        {
+            return new InventoryManager(this);
+        }
+
         protected override EmailerBase CreateEmailerCore()
         {
             if (EmailerFactory == null)

@@ -45,11 +45,14 @@
     <Compile Include="DomainFacade.cs" />
     <Compile Include="Exceptions\OrderSystemBusinessBaseException.cs" />
     <Compile Include="Exceptions\ProductNotSupportedException.cs" />
+    <Compile Include="Exceptions\UnSupportedProductCanNotBeAddedToInventoryException.cs" />
     <Compile Include="Managers\Gateways\WarehouseServiceGateway.cs" />
     <Compile Include="Managers\Gateways\WarehouseServiceGatewayBase.cs" />
     <Compile Include="Managers\InfraStructureServices\Emailer.cs" />
     <Compile Include="Managers\InfraStructureServices\EmailerBase.cs" />
+    <Compile Include="Managers\InventoryManager.cs" />
     <Compile Include="Managers\OrderManager.cs" />
+    <Compile Include="Managers\Validators\InventoryValidator.cs" />
     <Compile Include="Managers\Validators\OrderValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator\ServiceLocatorProduction.cs" />
