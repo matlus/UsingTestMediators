@@ -36,10 +36,10 @@ namespace AcceptanceTests
         public void DomainFacade_PlaceOrder_WhenOrderPlacedWithSupportedProduct_ShouldPlaceOrder()
         {
             // Arrange
-
+            var irrelevantQuantity = 1;
 
             // Act
-            var orderNumber = domainFacadeUnderTest.PlaceOrder(1, "A Mind of its Own", 1);
+            var orderNumber = domainFacadeUnderTest.PlaceOrder(1, "A Mind of its Own", irrelevantQuantity);
 
             // Assert
             Assert.IsNotNull(orderNumber);
