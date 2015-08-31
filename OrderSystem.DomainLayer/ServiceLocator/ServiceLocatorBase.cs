@@ -3,11 +3,6 @@ using OrderSystem.DomainLayer.DataLayer.Managers;
 using OrderSystem.DomainLayer.Managers;
 using OrderSystem.DomainLayer.Managers.Gateways;
 using OrderSystem.DomainLayer.Managers.InfraStructureServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderSystem.DomainLayer.ServiceLocator
 {

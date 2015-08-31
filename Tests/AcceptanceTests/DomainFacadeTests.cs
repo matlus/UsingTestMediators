@@ -1,11 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderSystem.DomainLayer;
 using AcceptanceTests.ServiceLocator;
-using OrderSystem.DomainLayer.Managers;
-using OrderSystem.DomainLayer.Managers.InfraStructureServices;
-using OrderSystem.DomainLayer.Managers.Gateways;
-using OrderSystem.DomainLayer.DataLayer;
 using OrderSystem.DomainLayer.DataLayer.Managers;
 using AcceptanceTests.TestMediators;
 using AcceptanceTests.TestDoubles.Spies.Managers.InfrastructureServices;
@@ -57,12 +52,14 @@ namespace AcceptanceTests
         {
             // Arrange
             var nonSupportedProduct = "xxxxxxxx";
+            var irrelevantCustomerId = 1;
+            var irrelevantQuantity = 1;
             TestMediator.PlaceOrderNotSupportedException = new ProductNotSupportedException("This product, is Not Supported");
 
             // Act
             try
             {
-                var orderNumber = domainFacadeUnderTest.PlaceOrder(1, nonSupportedProduct, 1);
+                var orderNumber = domainFacadeUnderTest.PlaceOrder(irrelevantCustomerId, nonSupportedProduct, irrelevantQuantity);
                 Assert.Fail("We were expecting an exception of type: ProductNotSupportedException, but no exception was thrown");
             }
             catch (ProductNotSupportedException e)
@@ -73,18 +70,18 @@ namespace AcceptanceTests
             }
         }
 
-        [TestMethod]        
+        [TestMethod]
         [TestCategory("Acceptance Test")]
-        [ExpectedException(typeof(UnSupportedProductCanNotBeAddedToInventoryException))]
-        public void DomainFacade_AddProductToInventory_WhenProductBeingAddedIsNotSupported_ShouldThrow()
+        public void DomainFacade_RetrieveQuantityInStock_WhenProductQuantityExists_ShouldReturnNonZeroQuantity()
         {
             // Arrange
+            var expectedQuantiyInStock = 4;
 
             // Act
-            domainFacadeUnderTest.AddProductToInventory(-1, 10);
-            Assert.Fail("An UnSupportedProductCanNotBeAddedToInventoryException was expected to be throw, but no Exception was thrown");
+            var actualQuantityInStock = 3;
 
             // Assert
+            Assert.AreEqual(expectedQuantiyInStock, actualQuantityInStock, string.Format("The expected quantity of the product in stock was : {0}, but the actual quantity found was: {1}", expectedQuantiyInStock, actualQuantityInStock));
         }
     }
 }
