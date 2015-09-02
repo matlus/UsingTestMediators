@@ -12,3 +12,5 @@ C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\bin\Debu
 C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
 C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\obj\Debug\AcceptanceTests.dll
 C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\obj\Debug\AcceptanceTests.pdb
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Shiv\Documents\GitHub\UsingTestMediators\Tests\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml

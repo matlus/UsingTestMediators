@@ -2,12 +2,11 @@
 {
     internal sealed class WarehouseServiceGateway : WarehouseServiceGatewayBase
     {
-        protected override void RemoveCore(string productName, int quantity)
+        protected override void ShipCore(string orderNumber)
         {
-            System.Diagnostics.Debug.WriteLine("WarehouseServiceGateway.RemoveCore");
+            System.Diagnostics.Debug.WriteLine("WarehouseServiceGateway.ShipCore");
             System.Diagnostics.Debug.Indent();
-            System.Diagnostics.Debug.WriteLine("productName: " + productName);
-            System.Diagnostics.Debug.WriteLine("quantity: " + quantity);
+            System.Diagnostics.Debug.WriteLine("Order Number: " + orderNumber);
             System.Diagnostics.Debug.Unindent();
         }
     }

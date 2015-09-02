@@ -1,12 +1,28 @@
-﻿namespace OrderSystem.DomainLayer.DataLayer.Managers
+﻿using OrderSystem.DomainLayer.Models;
+using System;
+using System.Collections.Generic;
+
+namespace OrderSystem.DomainLayer.DataLayer.Managers
 {
     internal abstract class OrderDataManagerBase
     {
-        public string CreateOrderRecord(int customerId, string productName, int quantity)
+        public long AddProductToInventory(string productName, int quantity)
         {
-            return CreateOrderRecordCore(customerId, productName, quantity);
+            return AddProductToInventoryCore(productName, quantity);
         }
 
-        protected abstract string CreateOrderRecordCore(int customerId, string productName, int quantity);
+        public IDictionary<string,ProductInStock> GetProductsInStock()
+        {
+            return GetProductsInStockCore();
+        }
+
+        public string PlaceOrder(int customerId, long productId, int quantity)
+        {
+            return PlaceOrderCore(customerId, productId, quantity);
+        }
+
+        protected abstract long AddProductToInventoryCore(string productName, int quantity);
+        protected abstract IDictionary<string, ProductInStock> GetProductsInStockCore();
+        protected abstract string PlaceOrderCore(int customerId, long productId, int quantity);
     }
 }

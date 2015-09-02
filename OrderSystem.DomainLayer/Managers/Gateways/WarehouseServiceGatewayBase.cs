@@ -2,11 +2,11 @@
 {
     internal abstract class WarehouseServiceGatewayBase
     {
-        public void Remove(string productName, int quantity)
+        public void Ship(string orderNumber)
         {
-            RemoveCore(productName, quantity);
+            ShipCore(orderNumber);
         }
 
-        protected abstract void RemoveCore(string productName, int quantity);
+        protected abstract void ShipCore(string orderNumber);
     }
 }

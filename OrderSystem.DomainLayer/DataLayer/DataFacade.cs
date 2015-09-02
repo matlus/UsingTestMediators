@@ -1,5 +1,7 @@
 ﻿using OrderSystem.DomainLayer.DataLayer.Managers;
+using OrderSystem.DomainLayer.Models;
 using OrderSystem.DomainLayer.ServiceLocator;
+using System.Collections.Generic;
 
 namespace OrderSystem.DomainLayer.DataLayer
 {
@@ -9,14 +11,25 @@ namespace OrderSystem.DomainLayer.DataLayer
 
         private OrderDataManagerBase orderDataManager;
         private  OrderDataManagerBase OrderDataManager { get { return orderDataManager ?? (orderDataManager = serviceLocator.CreateOrderDataManager()); } }
+
         public DataFacade(ServiceLocatorBase serviceLocator)
         {
             this.serviceLocator = serviceLocator;
         }
 
-        public string CreateOrderRecord(int customerId, string productName, int quantity)
+        public long AddProductToInventory(string productName, int quantity)
         {
-            return OrderDataManager.CreateOrderRecord(customerId, productName, quantity);
+            return OrderDataManager.AddProductToInventory(productName, quantity);
+        }
+
+        public string PlaceOrder(int customerId, long productId, int quantity)
+        {
+            return OrderDataManager.PlaceOrder(customerId, productId, quantity);
+        }
+
+        public IDictionary<string, ProductInStock> GetProductsInStock()
+        {
+            return OrderDataManager.GetProductsInStock();
         }
     }
 }

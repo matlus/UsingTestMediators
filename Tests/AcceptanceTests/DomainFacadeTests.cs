@@ -1,11 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OrderSystem.DomainLayer;
-using AcceptanceTests.ServiceLocator;
-using OrderSystem.DomainLayer.DataLayer.Managers;
-using AcceptanceTests.TestMediators;
-using AcceptanceTests.TestDoubles.Spies.Managers.InfrastructureServices;
-using OrderSystem.DomainLayer.Exceptions;
+﻿using AcceptanceTests.ServiceLocator;
 using AcceptanceTests.TestDoubles.Spies.Managers.Gateways;
+using AcceptanceTests.TestDoubles.Spies.Managers.InfrastructureServices;
+using AcceptanceTests.TestMediators;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OrderSystem.DomainLayer;
+using OrderSystem.DomainLayer.DataLayer.Managers;
+using OrderSystem.DomainLayer.Exceptions;
+using OrderSystem.DomainLayer.Managers.Gateways;
+using OrderSystem.DomainLayer.Managers.InfraStructureServices;
+using System;
 
 namespace AcceptanceTests
 {
@@ -19,8 +22,8 @@ namespace AcceptanceTests
         {
             var serviceLocator = new ServiceLocatorForUnitTesting();
             serviceLocator.OrderDataManagerFactory = () => new OrderDataManager();
-            serviceLocator.EmailerFactory = () => new EmailerSpy();
-            serviceLocator.WarehouseServiceGatewayFactory = () => new WarehouseServiceGatewaySpy();
+            serviceLocator.EmailerFactory = () => new Emailer();
+            serviceLocator.WarehouseServiceGatewayFactory = () => new WarehouseServiceGateway();
 
             domainFacadeUnderTest = new DomainFacade(serviceLocator);
         }
@@ -36,14 +39,21 @@ namespace AcceptanceTests
         public void DomainFacade_PlaceOrder_WhenOrderPlacedWithSupportedProduct_ShouldPlaceOrder()
         {
             // Arrange
-            var irrelevantQuantity = 1;
+            var irrelevantProductName = "Product_" + Guid.NewGuid().ToString("N");
+            var originalQuantityInStock = 50;
+            var productId = domainFacadeUnderTest.AddProductToInventory(irrelevantProductName, originalQuantityInStock);
+            var irrelevantCustomerId = 99;
+            var orderQuantity = originalQuantityInStock - 5;
 
             // Act
-            var orderNumber = domainFacadeUnderTest.PlaceOrder(1, "A Mind of its Own", irrelevantQuantity);
+            var orderNumber = domainFacadeUnderTest.PlaceOrder(irrelevantCustomerId, productId, orderQuantity);
 
             // Assert
             Assert.IsNotNull(orderNumber);
-            Assert.AreEqual(1, TestMediator.PlaceOrderOrderConfirmationEmailsSentCount, "Expected Exactly 1 Order Confirmation email to have been sent. But found: " + TestMediator.PlaceOrderOrderConfirmationEmailsSentCount.ToString() + ", emails were sent");
+            var productsInStock = domainFacadeUnderTest.GetProductsInStock();
+            var quantityInStock = productsInStock[irrelevantProductName].Quantity;
+            Assert.AreEqual(originalQuantityInStock - orderQuantity, quantityInStock);
+            //Assert.AreEqual(1, TestMediator.PlaceOrderOrderConfirmationEmailsSentCount, "Expected Exactly 1 Order Confirmation email to have been sent. But found: " + TestMediator.PlaceOrderOrderConfirmationEmailsSentCount.ToString() + ", emails were sent");
         }
 
         [TestMethod]
@@ -51,7 +61,7 @@ namespace AcceptanceTests
         public void DomainFacade_PlaceOrder_WhenOrderPlacedWithNonSupportedProduct_ShouldThrow()
         {
             // Arrange
-            var nonSupportedProduct = "xxxxxxxx";
+            var nonSupportedId = -99999;
             var irrelevantCustomerId = 1;
             var irrelevantQuantity = 1;
             TestMediator.PlaceOrderNotSupportedException = new ProductNotSupportedException("This product, is Not Supported");
@@ -59,7 +69,7 @@ namespace AcceptanceTests
             // Act
             try
             {
-                var orderNumber = domainFacadeUnderTest.PlaceOrder(irrelevantCustomerId, nonSupportedProduct, irrelevantQuantity);
+                var orderNumber = domainFacadeUnderTest.PlaceOrder(irrelevantCustomerId, nonSupportedId, irrelevantQuantity);
                 Assert.Fail("We were expecting an exception of type: ProductNotSupportedException, but no exception was thrown");
             }
             catch (ProductNotSupportedException e)

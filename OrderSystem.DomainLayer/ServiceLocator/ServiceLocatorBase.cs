@@ -13,11 +13,6 @@ namespace OrderSystem.DomainLayer.ServiceLocator
             return CreateOrderManagerCore();
         }
 
-        public InventoryManager CreateInventoryManager()
-        {
-            return CreateInventoryManagerCore();
-        }
-        
         public EmailerBase CreateEmailer()
         {
             return CreateEmailerCore();
@@ -39,7 +34,6 @@ namespace OrderSystem.DomainLayer.ServiceLocator
         }
 
         protected abstract OrderManager CreateOrderManagerCore();
-        protected abstract InventoryManager CreateInventoryManagerCore();
         protected abstract EmailerBase CreateEmailerCore();
         protected abstract WarehouseServiceGatewayBase CreateWarehouseServiceGatewayCore();
         protected abstract DataFacade CreateDataFacadeCore();
