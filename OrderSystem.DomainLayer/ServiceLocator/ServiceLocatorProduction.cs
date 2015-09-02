@@ -3,9 +3,11 @@ using OrderSystem.DomainLayer.DataLayer.Managers;
 using OrderSystem.DomainLayer.Managers;
 using OrderSystem.DomainLayer.Managers.Gateways;
 using OrderSystem.DomainLayer.Managers.InfraStructureServices;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OrderSystem.DomainLayer.ServiceLocator
 {
+    [ExcludeFromCodeCoverage]
     internal sealed class ServiceLocatorProduction : ServiceLocatorBase
     {
         protected override OrderManager CreateOrderManagerCore()

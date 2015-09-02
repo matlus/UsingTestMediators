@@ -15,6 +15,11 @@ namespace OrderSystem.DomainLayer.DataLayer.Managers
             return GetProductsInStockCore();
         }
 
+        public ProductInStock GetProductStock(long productId)
+        {
+            return GetProductStockCore(productId);
+        }
+
         public string PlaceOrder(int customerId, long productId, int quantity)
         {
             return PlaceOrderCore(customerId, productId, quantity);
@@ -22,6 +27,7 @@ namespace OrderSystem.DomainLayer.DataLayer.Managers
 
         protected abstract long AddProductToInventoryCore(string productName, int quantity);
         protected abstract IDictionary<string, ProductInStock> GetProductsInStockCore();
+        protected abstract ProductInStock GetProductStockCore(long productId);
         protected abstract string PlaceOrderCore(int customerId, long productId, int quantity);
     }
 }

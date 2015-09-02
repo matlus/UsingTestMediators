@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace OrderSystem.DomainLayer.Exceptions
 {
     [Serializable]
+    [ExcludeFromCodeCoverage]
     public class OrderSystemBusinessBaseException : Exception
     {
         public OrderSystemBusinessBaseException() { }

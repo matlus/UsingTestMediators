@@ -31,5 +31,10 @@ namespace OrderSystem.DomainLayer.DataLayer
         {
             return OrderDataManager.GetProductsInStock();
         }
+
+        public ProductInStock GetProductStock(long productId)
+        {
+            return OrderDataManager.GetProductStock(productId);
+        }
     }
 }

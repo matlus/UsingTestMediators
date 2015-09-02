@@ -2,6 +2,7 @@
 using OrderSystem.DomainLayer.Models;
 using OrderSystem.DomainLayer.ServiceLocator;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OrderSystem.DomainLayer
 {
@@ -12,6 +13,7 @@ namespace OrderSystem.DomainLayer
         private OrderManager orderManager;
         private OrderManager OrderManager { get { return orderManager ?? (orderManager = serviceLocator.CreateOrderManager()); } }
 
+        [ExcludeFromCodeCoverage]
         public DomainFacade()
             :this(new ServiceLocatorProduction())
         {

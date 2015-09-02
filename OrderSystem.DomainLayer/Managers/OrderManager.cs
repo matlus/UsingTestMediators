@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OrderSystem.DomainLayer.DataLayer;
 using OrderSystem.DomainLayer.Managers.Gateways;
 using OrderSystem.DomainLayer.Managers.InfraStructureServices;
 using OrderSystem.DomainLayer.Managers.Validators;
 using OrderSystem.DomainLayer.Models;
 using OrderSystem.DomainLayer.ServiceLocator;
+using OrderSystem.DomainLayer.Exceptions;
 
 namespace OrderSystem.DomainLayer.Managers
 {
@@ -38,11 +40,20 @@ namespace OrderSystem.DomainLayer.Managers
 
         public string PlaceOrder(int customerId, long productId, int quantity)
         {
-            OrderValidator.EnsureOrderParameters(customerId, productId, quantity);            
+            OrderValidator.EnsureOrderParameters(customerId, productId, quantity);
+            EnsureProductIsSupported(productId);            
             var orderNumber = DataFacade.PlaceOrder(customerId, productId, quantity);
             WarehouseServiceGateway.Ship(orderNumber);
             Emailer.SendEmail(customerId, subject: "Order Confirmation", body: "Your order: " + orderNumber + ", has been received and confirmed. The shipment is on its way!");
             return orderNumber;
+        }
+
+        private void EnsureProductIsSupported(long productId)
+        {
+            var productStock = DataFacade.GetProductStock(productId);
+
+            if (productStock == null)
+                throw new ProductNotSupportedException("Product with Id: " + productId.ToString() + " is Not Supported");
         }
     }
 }

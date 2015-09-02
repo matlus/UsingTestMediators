@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using OrderSystem.DomainLayer.Models;
 using System.Diagnostics;
 using OrderSystem.DomainLayer.Exceptions;
+using System.Linq;
 
 namespace OrderSystem.DomainLayer.DataLayer.Managers
 {
@@ -48,8 +49,7 @@ namespace OrderSystem.DomainLayer.DataLayer.Managers
             Debug.WriteLine("quantity: " + quantity);
             Debug.Unindent();
 
-            var productName = GetProductName(productId);
-            EnsureProductExistsAndIsInStock(productName, quantity);
+            var productName = GetProductName(productId);            
             DeductInventory(productName, quantity);
 
             return Guid.NewGuid().ToString("N");
@@ -57,13 +57,7 @@ namespace OrderSystem.DomainLayer.DataLayer.Managers
 
         private string GetProductName(long productId)
         {
-            foreach (var kvp in items)
-            {
-                if (kvp.Value.Id == productId)
-                    return kvp.Value.Name;
-            }
-
-            throw new ProductNotSupportedException("Product with Id: " + productId.ToString() + " is Not Supported");
+            return items.Values.Single(p => p.Id == productId).Name;
         }
 
         private void DeductInventory(string productName, int quantity)
@@ -73,28 +67,23 @@ namespace OrderSystem.DomainLayer.DataLayer.Managers
 
             if (balanceInStock > 0)
                 items[productName] = new ProductInStock(productInStock.Id, productName, balanceInStock);
-        }
-
-        private void EnsureProductExistsAndIsInStock(string productName, int quantity)
-        {
-            if (!items.ContainsKey(productName))
-            {
-                throw new ProductNotSupportedException("The Product: " + productName + ", is not supported");
-            }
-            else
-            {
-                var existingQuantity = items[productName].Quantity;
-                if (existingQuantity < quantity)
-                {
-                    // throw Exception;
-                }
-            }
-        }
+        }       
 
         protected override IDictionary<string, ProductInStock> GetProductsInStockCore()
         {
             Debug.WriteLine("OrderDataManager.GetProductsInStockCore");
             return items;
+        }
+
+        protected override ProductInStock GetProductStockCore(long productId)
+        {
+            foreach (var kvp in items)
+            {
+                if (kvp.Value.Id == productId)
+                    return kvp.Value;
+            }
+
+            return null;
         }
     }
 }
