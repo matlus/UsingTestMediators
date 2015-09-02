@@ -45,7 +45,6 @@
     <Compile Include="DomainFacade.cs" />
     <Compile Include="Exceptions\OrderSystemBusinessBaseException.cs" />
     <Compile Include="Exceptions\ProductNotSupportedException.cs" />
-    <Compile Include="Exceptions\ProductWithSpecifiedIdDoesNotExists.cs" />
     <Compile Include="Exceptions\UnSupportedProductCanNotBeAddedToInventoryException.cs" />
     <Compile Include="Managers\Gateways\WarehouseServiceGateway.cs" />
     <Compile Include="Managers\Gateways\WarehouseServiceGatewayBase.cs" />

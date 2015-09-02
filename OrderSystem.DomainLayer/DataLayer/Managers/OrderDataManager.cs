@@ -63,7 +63,7 @@ namespace OrderSystem.DomainLayer.DataLayer.Managers
                     return kvp.Value.Name;
             }
 
-            throw new ProductWithSpecifiedIdDoesNotExists("No Product with an Id: " + productId.ToString() + " Found");
+            throw new ProductNotSupportedException("Product with Id: " + productId.ToString() + " is Not Supported");
         }
 
         private void DeductInventory(string productName, int quantity)

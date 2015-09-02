@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace OrderSystem.DomainLayer.Models
+﻿namespace OrderSystem.DomainLayer.Models
 {
     public sealed class ProductInStock
     {
